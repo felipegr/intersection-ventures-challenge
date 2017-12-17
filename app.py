@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request, flash, url_for, redirect, render_template
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -14,7 +14,9 @@ def create_app():
     
     db.init_app(app)
     
+    from tutor_match.api import api
     from tutor_match.views import root
+    app.register_blueprint(api)
     app.register_blueprint(root)
     
     return app
