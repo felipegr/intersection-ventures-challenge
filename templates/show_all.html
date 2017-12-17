@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
+   
+   <body>
+      
+      <h3>
+         TutorMatch
+      </h3>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+		
+      <h3>Tutors (<a href = "{{ url_for('root.new') }}">Add Tutor</a>)</h3>
+      
+      <table>
+         <thead>
+            <tr>
+               <th>Id</th>
+               <th>Name</th>
+               <th>Document</th>
+               <th></th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for tutor in tutors %}
+               <tr>
+                  <td>{{ tutor.id }}</td>
+                  <td>{{ tutor.name }}</td>
+                  <td>{{ tutor.document_no }}</td>
+                  <td><a href = "{{ url_for('root.delete', id=tutor.id) }}"><i class="fa fa-remove"></i></a></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+   </body>
+
+</html>
